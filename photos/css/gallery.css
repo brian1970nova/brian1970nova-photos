@@ -4,8 +4,8 @@
 â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 :root {
-  --bg:        #0f0f0f;
-  --surface:   #1a1a1a;
+  --bg:        transparent;
+  --surface:   rgba(20, 20, 20, 0.82);
   --border:    #2a2a2a;
   --gold:      #e8c060;
   --gold-light:#f5d47a;
@@ -18,8 +18,21 @@
 
 html { scroll-behavior: smooth; }
 
+/* Subtle dark overlay over gallery background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Lift all content above the overlay */
+header, main, footer { position: relative; z-index: 1; }
+
 body {
-  background: var(--bg);
+  background: url('/gallery%20background.jpg') center/cover no-repeat fixed;
   color: var(--text);
   font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
   min-height: 100vh;
