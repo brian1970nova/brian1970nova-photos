@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brian's Photo Gallery</title>
+  <link rel="stylesheet" href="css/gallery.css">
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <h1>📷 Brian's Photos</h1>
+      <p class="tagline">Family gallery — pick an album to browse</p>
+    </div>
+  </header>
+
+  <main>
+    <!-- ─────────────────────────────────────────────────────────────────────
+         ALBUMS CONFIGURATION
+         Edit the albums array in js/config.js to add your own albums.
+    ──────────────────────────────────────────────────────────────────────── -->
+    <section id="albums-grid" class="albums-grid">
+      <!-- Album cards are injected by gallery.js -->
+      <div class="loading">Loading albums…</div>
+    </section>
+  </main>
+
+  <footer>
+    <p>brian1970nova.com/photos &nbsp;·&nbsp; Shared with ♥</p>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/gallery.js"></script>
+</body>
+</html>
