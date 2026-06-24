@@ -1,0 +1,310 @@
+/* ══════════════════════════════════════════
+   Brian's Photo Gallery — gallery.css
+   Dark, minimal, mobile-first
+══════════════════════════════════════════ */
+
+:root {
+  --bg:        #0f0f0f;
+  --surface:   #1a1a1a;
+  --border:    #2a2a2a;
+  --gold:      #e8c060;
+  --gold-light:#f5d47a;
+  --text:      #f0f0f0;
+  --muted:     #888;
+  --radius:    8px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Header ── */
+header {
+  background: #111;
+  border-bottom: 1px solid var(--border);
+  padding: 1.5rem 2rem;
+  text-align: center;
+}
+
+.header-inner { max-width: 900px; margin: 0 auto; }
+
+header h1 {
+  font-size: 1.9rem;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.3rem;
+}
+
+.tagline { color: var(--muted); font-size: 0.95rem; }
+
+.back-link {
+  display: inline-block;
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-bottom: 0.6rem;
+  transition: color 0.15s;
+}
+.back-link:hover { color: var(--gold-light); }
+
+/* ── Main ── */
+main {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ── Albums Grid ── */
+.albums-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+
+.album-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.album-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}
+
+.album-thumb {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  background: #222;
+  display: block;
+}
+
+.album-thumb-placeholder {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
+
+.album-info {
+  padding: 0.9rem 1rem;
+}
+
+.album-info h2 {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.album-info .meta {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.album-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 3px;
+  font-weight: 600;
+  margin-left: 0.4rem;
+  vertical-align: middle;
+}
+.badge-drive  { background: #1a4a2a; color: #6fcf97; }
+.badge-photos { background: #4a1a1a; color: #f28b82; }
+
+/* ── External album card (Google Photos link) ── */
+.album-card.external .album-thumb-placeholder::after {
+  content: '';
+}
+
+.external-link-hint {
+  font-size: 0.78rem;
+  color: var(--gold);
+  margin-top: 0.3rem;
+}
+
+/* ── Photos Grid ── */
+.photos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.75rem;
+}
+
+.photo-tile {
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #1e1e1e;
+  transition: transform 0.18s, box-shadow 0.18s;
+  position: relative;
+}
+
+.photo-tile:hover { transform: scale(1.03); box-shadow: 0 6px 20px rgba(0,0,0,0.6); }
+.photo-tile:hover .photo-overlay { opacity: 1; }
+
+.photo-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  loading: lazy;
+}
+
+.photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  display: flex;
+  align-items: flex-end;
+  padding: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.18s;
+}
+
+.photo-overlay span {
+  font-size: 0.75rem;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+/* ── Lightbox ── */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.94);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.lightbox.hidden { display: none; }
+
+.lb-content {
+  max-width: min(90vw, 1100px);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+#lb-img {
+  max-width: 100%;
+  max-height: 80vh;
+  border-radius: 4px;
+  object-fit: contain;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+}
+
+#lb-caption {
+  color: #bbb;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.lb-close {
+  position: fixed;
+  top: 1.2rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.8rem;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.15s;
+  z-index: 1001;
+  line-height: 1;
+}
+.lb-close:hover { opacity: 1; }
+
+.lb-prev, .lb-next {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+  font-size: 2.5rem;
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  transition: background 0.15s;
+  z-index: 1001;
+  line-height: 1;
+}
+.lb-prev { left: 0.75rem; }
+.lb-next { right: 0.75rem; }
+.lb-prev:hover, .lb-next:hover { background: rgba(255,255,255,0.18); }
+
+/* ── Shared states ── */
+.loading {
+  color: var(--muted);
+  text-align: center;
+  padding: 3rem;
+  width: 100%;
+  grid-column: 1/-1;
+}
+
+.error-msg {
+  color: #f28b82;
+  background: #2a1010;
+  border: 1px solid #5a2020;
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  grid-column: 1/-1;
+  font-size: 0.9rem;
+}
+
+/* ── Footer ── */
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  border-top: 1px solid var(--border);
+  margin-top: 2rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  main { padding: 1rem; }
+  header { padding: 1.2rem 1rem; }
+  header h1 { font-size: 1.5rem; }
+  .albums-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 0.75rem; }
+  .photos-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.5rem; }
+  .lb-prev { left: 0.25rem; }
+  .lb-next { right: 0.25rem; }
+}
