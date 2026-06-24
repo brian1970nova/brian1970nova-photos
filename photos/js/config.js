@@ -27,15 +27,15 @@ const GOOGLE_API_KEY = "AIzaSyC5tvRwk1nwfHTIQMshdjc_vOv3Hb5_6qA";
 const ALBUMS = [
 
   // ── EXAMPLE: Google Drive album ──────────────────────────────────────
-  // {
-  //   type:       "drive",
-  //   id:         "1ZEDqTUU5kbgJ0yNFcIzXsWYvBB8JgSMq",
-  //   title:      "Colorado",
-  //   date:       "Oct 2022",
-  //   coverPhoto: "",   // optional: paste a direct image URL to use as the card cover
-  //                     // leave blank to auto-use the first photo in the folder
-  //   emoji:      "🏖️"  // shown if no cover photo loads
-  // },
+   {
+     type:       "drive",
+    id:         "1ZEDqTUU5kbgJ0yNFcIzXsWYvBB8JgSMq",
+    title:      "Colorado",
+    date:       "Oct 2022",
+    coverPhoto: "",   // optional: paste a direct image URL to use as the card cover
+                       // leave blank to auto-use the first photo in the folder
+     emoji:      "🏖️"  // shown if no cover photo loads
+   },
 
   // ── EXAMPLE: Google Photos shared album ──────────────────────────────
   // {
