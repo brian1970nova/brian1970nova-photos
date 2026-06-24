@@ -34,6 +34,14 @@ const ALBUMS = [
     date:  "Nov 2023",
     emoji: "🏔️"
   },
+
+   {
+    type:  "photos",
+    photosUrl:   "https://photos.app.goo.gl/x7vQV1Lw227KKMXR9",
+    title: "Colorado",
+    date:  "July 2025",
+    emoji: "🏔️"
+  },
 ];
 
 // ── Gallery header text ───────────────────────────────────────────────────
