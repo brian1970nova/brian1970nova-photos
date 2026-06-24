@@ -15,23 +15,15 @@
       align-items: center;
       justify-content: center;
     }
-    /* Dark overlay so text is always readable over any photo */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.55);
-      z-index: 0;
-    }
+    /* Frosted card behind text only — photo stays crisp and full brightness */
     .splash {
-      position: relative;
-      z-index: 1;
       text-align: center;
       padding: 2.5rem 3rem;
-      background: rgba(0, 0, 0, 0.45);
+      background: rgba(0, 0, 0, 0.50);
       border-radius: 12px;
-      backdrop-filter: blur(4px);
-      border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.15);
     }
     h1 {
       font-size: 3rem;
@@ -39,13 +31,12 @@
       letter-spacing: 0.05em;
       margin-bottom: 0.5rem;
       color: #ffffff;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.9);
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
     }
     p {
-      color: #e0e0e0;
+      color: #e8e8e8;
       margin-bottom: 2rem;
       font-size: 1.1rem;
-      text-shadow: 0 1px 6px rgba(0,0,0,0.9);
     }
     a {
       display: inline-block;
