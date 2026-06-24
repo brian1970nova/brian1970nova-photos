@@ -1,7 +1,7 @@
-/* ══════════════════════════════════════════
-   Brian's Photo Gallery — gallery.css
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   Brian's Photo Gallery â€” gallery.css
    Dark, minimal, mobile-first
-══════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 :root {
   --bg:        #0f0f0f;
@@ -27,7 +27,7 @@ body {
   flex-direction: column;
 }
 
-/* ── Header ── */
+/* â”€â”€ Header â”€â”€ */
 header {
   background: #111;
   border-bottom: 1px solid var(--border);
@@ -56,7 +56,7 @@ header h1 {
 }
 .back-link:hover { color: var(--gold-light); }
 
-/* ── Main ── */
+/* â”€â”€ Main â”€â”€ */
 main {
   flex: 1;
   padding: 2rem;
@@ -65,7 +65,7 @@ main {
   width: 100%;
 }
 
-/* ── Albums Grid ── */
+/* â”€â”€ Albums Grid â”€â”€ */
 .albums-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -138,7 +138,7 @@ main {
 .badge-drive  { background: #1a4a2a; color: #6fcf97; }
 .badge-photos { background: #4a1a1a; color: #f28b82; }
 
-/* ── External album card (Google Photos link) ── */
+/* â”€â”€ External album card (Google Photos link) â”€â”€ */
 .album-card.external .album-thumb-placeholder::after {
   content: '';
 }
@@ -149,7 +149,7 @@ main {
   margin-top: 0.3rem;
 }
 
-/* ── Photos Grid ── */
+/* â”€â”€ Photos Grid â”€â”€ */
 .photos-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -197,7 +197,7 @@ main {
   width: 100%;
 }
 
-/* ── Lightbox ── */
+/* â”€â”€ Lightbox â”€â”€ */
 .lightbox {
   position: fixed;
   inset: 0;
@@ -269,7 +269,35 @@ main {
 .lb-next { right: 0.75rem; }
 .lb-prev:hover, .lb-next:hover { background: rgba(255,255,255,0.18); }
 
-/* ── Shared states ── */
+/* â”€â”€ Video tile â”€â”€ */
+.video-tile .play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  background: rgba(0,0,0,0.65);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: #fff;
+  pointer-events: none;
+  transition: background 0.18s;
+}
+.video-tile:hover .play-btn { background: rgba(232,192,96,0.85); color: #000; }
+
+/* â”€â”€ Lightbox video iframe â”€â”€ */
+#lb-video {
+  width: min(85vw, 960px);
+  height: min(55vw, 540px);
+  border: none;
+  border-radius: 4px;
+  background: #000;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+}
 .loading {
   color: var(--muted);
   text-align: center;
@@ -288,7 +316,7 @@ main {
   font-size: 0.9rem;
 }
 
-/* ── Footer ── */
+/* â”€â”€ Footer â”€â”€ */
 footer {
   text-align: center;
   padding: 1.5rem;
@@ -298,7 +326,7 @@ footer {
   margin-top: 2rem;
 }
 
-/* ── Responsive ── */
+/* â”€â”€ Responsive â”€â”€ */
 @media (max-width: 600px) {
   main { padding: 1rem; }
   header { padding: 1.2rem 1rem; }
