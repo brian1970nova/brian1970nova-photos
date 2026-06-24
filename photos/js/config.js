@@ -27,7 +27,13 @@ const ALBUMS = [
   },
 
   // Add more albums here — copy the block above and change the values
-
+  {
+    type:  "drive",
+    id:    "1hvnYoXVLPOH83T_MU7O_CYwbQoLvhiAK",
+    title: "Colorado",
+    date:  "Nov 2023",
+    emoji: "🏔️"
+  },
 ];
 
 // ── Gallery header text ───────────────────────────────────────────────────
