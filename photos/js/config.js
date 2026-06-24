@@ -28,7 +28,7 @@ const ALBUMS = [
 
   // ── EXAMPLE: Google Drive album ──────────────────────────────────────
    {
-     type:       "drive",
+    type:       "drive",
     id:         "1ZEDqTUU5kbgJ0yNFcIzXsWYvBB8JgSMq",
     title:      "Colorado",
     date:       "Oct 2022",
@@ -37,18 +37,16 @@ const ALBUMS = [
      emoji:      "🏖️"  // shown if no cover photo loads
    },
 
-  // ── EXAMPLE: Google Photos shared album ──────────────────────────────
-  // {
-  //   type:        "photos",
-  //   photosUrl:   "https://photos.app.goo.gl/XXXXXXXXXXXXX",
-  //   title:       "Christmas 2023",
-  //   date:        "December 2023",
-  //   coverPhoto:  "",   // optional: paste any image URL to show as the card cover
-  //   emoji:       "🎄"
-  // },
 
   // ── ADD YOUR REAL ALBUMS BELOW ────────────────────────────────────────
   // (remove the example comments above once you've added yours)
+  {
+     type:  "drive",
+     id:    "1ZEDqTUU5kbgJ0yNFcIzXsWYvBB8JgSMq",
+     title: "Colorado",
+     date:  "Oct 2022",
+     emoji: "🏔️"
+   },
 
 ];
 
