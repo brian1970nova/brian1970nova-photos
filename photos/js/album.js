@@ -1,6 +1,6 @@
-// ══════════════════════════════════════════════════════════════════════════
-//  album.js  —  Individual album page (Google Drive folders only)
-// ══════════════════════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+//  album.js  â€”  Individual album page (Google Drive folders only)
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 const params   = new URLSearchParams(location.search);
 const folderId = params.get("id");
@@ -9,7 +9,7 @@ const date     = params.get("date")  || "";
 
 document.getElementById("album-title").textContent    = title;
 document.getElementById("album-subtitle").textContent = date;
-document.title = `${title} — ${GALLERY_TITLE}`;
+document.title = `${title} â€” ${GALLERY_TITLE}`;
 
 const grid  = document.getElementById("photos-grid");
 const lb    = document.getElementById("lightbox");
@@ -19,7 +19,7 @@ const lbCap = document.getElementById("lb-caption");
 let photos  = [];  // { id, name, thumb, full }
 let current = 0;
 
-// ── Google Drive fetch ────────────────────────────────────────────────────
+// â”€â”€ Google Drive fetch â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 async function loadPhotos() {
   if (!folderId) {
@@ -65,9 +65,9 @@ async function loadPhotos() {
       <strong>Could not load photos.</strong><br>
       ${escHtml(err.message)}<br><br>
       Make sure:<br>
-      • The Drive folder is set to "Anyone with the link can view"<br>
-      • Your API key has Drive API enabled<br>
-      • There are no API key restrictions blocking this domain
+      â€¢ The Drive folder is set to "Anyone with the link can view"<br>
+      â€¢ Your API key has Drive API enabled<br>
+      â€¢ There are no API key restrictions blocking this domain
     </div>`;
     return;
   }
@@ -81,13 +81,13 @@ async function loadPhotos() {
     id:    f.id,
     name:  f.name,
     thumb: `https://lh3.googleusercontent.com/d/${f.id}=w400`,
-    full:  `https://lh3.googleusercontent.com/d/${f.id}=w1600`
+    full:  `https://lh3.googleusercontent.com/d/${f.id}=s0`  // s0 = original full resolution
   }));
 
   renderTiles();
 }
 
-// ── Render tiles ──────────────────────────────────────────────────────────
+// â”€â”€ Render tiles â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function renderTiles() {
   grid.innerHTML = "";
@@ -103,7 +103,7 @@ function renderTiles() {
   });
 }
 
-// ── Lightbox ──────────────────────────────────────────────────────────────
+// â”€â”€ Lightbox â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function openLightbox(idx) {
   current = idx;
@@ -121,7 +121,9 @@ function closeLightbox() {
 function showPhoto() {
   const p = photos[current];
   lbImg.src = p.full;
-  lbCap.textContent = `${p.name}  (${current + 1} / ${photos.length})`;
+  lbCap.innerHTML = `${escHtml(p.name)}&nbsp;&nbsp;(${current + 1} / ${photos.length})
+    &nbsp;&nbsp;<a href="${p.full}" target="_blank" rel="noopener"
+      style="color:#e8c060;text-decoration:none;font-size:0.85rem;">View full size â†—</a>`;
 }
 
 document.getElementById("lb-close").addEventListener("click", closeLightbox);
@@ -157,7 +159,7 @@ lb.addEventListener("touchend", e => {
   }
 });
 
-// ── Helpers ──────────────────────────────────────────────────────────────
+// â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function escHtml(str) {
   return String(str)
@@ -165,5 +167,5 @@ function escHtml(str) {
     .replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 }
 
-// ── Init ──────────────────────────────────────────────────────────────────
+// â”€â”€ Init â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 loadPhotos();
