@@ -43,11 +43,12 @@ async function loadPhotos() {
     do {
       const tokenParam = pageToken ? `&pageToken=${pageToken}` : "";
       const url = `https://www.googleapis.com/drive/v3/files`
-        + `?q='${folderId}'+in+parents+and+mimeType+contains+'image/'`
+        + `?q='${folderId}'+in+parents`
+        + `+and+(mimeType+contains+'image/'+or+mimeType+contains+'video/')`
         + `+and+trashed%3Dfalse`
         + `&orderBy=name`
         + `&pageSize=100`
-        + `&fields=nextPageToken,files(id,name)`
+        + `&fields=nextPageToken,files(id,name,mimeType,thumbnailLink)`
         + `&key=${GOOGLE_API_KEY}`
         + tokenParam;
 
@@ -80,8 +81,15 @@ async function loadPhotos() {
   photos = allFiles.map(f => ({
     id:    f.id,
     name:  f.name,
-    thumb: `https://lh3.googleusercontent.com/d/${f.id}=w400`,
-    full:  `https://lh3.googleusercontent.com/d/${f.id}=s0`  // s0 = original full resolution
+    type:  f.mimeType.startsWith('video/') ? 'video' : 'image',
+    thumb: f.thumbnailLink
+      ? f.thumbnailLink.replace(/=s\d+$/, '=s400')
+      : (f.mimeType.startsWith('video/')
+          ? `https://drive.google.com/thumbnail?id=${f.id}&sz=w400`
+          : `https://lh3.googleusercontent.com/d/${f.id}=w400`),
+    full:  f.mimeType.startsWith('video/')
+      ? `https://drive.google.com/file/d/${f.id}/preview`
+      : `https://lh3.googleusercontent.com/d/${f.id}=s0`
   }));
 
   renderTiles();
@@ -93,10 +101,10 @@ function renderTiles() {
   grid.innerHTML = "";
   photos.forEach((photo, idx) => {
     const tile = document.createElement("div");
-    tile.className = "photo-tile";
+    tile.className = "photo-tile" + (photo.type === 'video' ? ' video-tile' : '');
     tile.innerHTML = `
-      <img src="${photo.thumb}" alt="${escHtml(photo.name)}" loading="lazy"
-           onerror="this.src='${photo.full}'">
+      <img src="${photo.thumb}" alt="${escHtml(photo.name)}" loading="lazy">
+      ${photo.type === 'video' ? '<div class="play-btn">â–¶</div>' : ''}
       <div class="photo-overlay"><span>${escHtml(photo.name)}</span></div>`;
     tile.addEventListener("click", () => openLightbox(idx));
     grid.appendChild(tile);
@@ -116,14 +124,38 @@ function closeLightbox() {
   lb.classList.add("hidden");
   document.body.style.overflow = "";
   lbImg.src = "";
+  const iframe = document.getElementById('lb-video');
+  if (iframe) { iframe.src = ''; }
 }
 
 function showPhoto() {
   const p = photos[current];
-  lbImg.src = p.full;
-  lbCap.innerHTML = `${escHtml(p.name)}&nbsp;&nbsp;(${current + 1} / ${photos.length})
-    &nbsp;&nbsp;<a href="${p.full}" target="_blank" rel="noopener"
-      style="color:#e8c060;text-decoration:none;font-size:0.85rem;">View full size â†—</a>`;
+  const lbContent = document.querySelector('.lb-content');
+
+  if (p.type === 'video') {
+    // Replace img with iframe for video playback
+    lbImg.style.display = 'none';
+    let iframe = document.getElementById('lb-video');
+    if (!iframe) {
+      iframe = document.createElement('iframe');
+      iframe.id = 'lb-video';
+      iframe.allow = 'autoplay';
+      iframe.allowFullscreen = true;
+      lbContent.insertBefore(iframe, lbImg);
+    }
+    iframe.style.display = 'block';
+    iframe.src = p.full;
+    lbCap.innerHTML = `â–¶ ${escHtml(p.name)}&nbsp;&nbsp;(${current + 1} / ${photos.length})`;
+  } else {
+    // Show image, hide video iframe
+    lbImg.style.display = 'block';
+    lbImg.src = p.full;
+    const iframe = document.getElementById('lb-video');
+    if (iframe) { iframe.style.display = 'none'; iframe.src = ''; }
+    lbCap.innerHTML = `${escHtml(p.name)}&nbsp;&nbsp;(${current + 1} / ${photos.length})
+      &nbsp;&nbsp;<a href="${p.full}" target="_blank" rel="noopener"
+        style="color:#e8c060;text-decoration:none;font-size:0.85rem;">View full size â†—</a>`;
+  }
 }
 
 document.getElementById("lb-close").addEventListener("click", closeLightbox);
