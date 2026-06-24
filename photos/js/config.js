@@ -6,7 +6,7 @@
 // ── Step 1: Add your Google API key here ─────────────────────────────────
 //  Get one free at: https://console.cloud.google.com
 //  Enable "Google Drive API", create an API key (no OAuth needed for public folders)
-const GOOGLE_API_KEY = "YOUR_API_KEY_HERE";
+const GOOGLE_API_KEY = "https://drive.google.com/drive/folders/1ZEDqTUU5kbgJ0yNFcIzXsWYvBB8JgSMq?usp=sharing";
 
 // ── Step 2: Define your albums ────────────────────────────────────────────
 //
