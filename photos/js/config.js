@@ -6,7 +6,7 @@
 // ── Step 1: Add your Google API key here ─────────────────────────────────
 //  Get one free at: https://console.cloud.google.com
 //  Enable "Google Drive API", create an API key (no OAuth needed for public folders)
-const GOOGLE_API_KEY = "1ZEDqTUU5kbgJ0yNFcIzXsWYvBB8JgSMq";
+const GOOGLE_API_KEY = "AIzaSyC5tvRwk1nwfHTIQMshdjc_vOv3Hb5_6qA";
 
 // ── Step 2: Define your albums ────────────────────────────────────────────
 //
@@ -29,9 +29,9 @@ const ALBUMS = [
   // ── EXAMPLE: Google Drive album ──────────────────────────────────────
   // {
   //   type:       "drive",
-  //   id:         "PASTE_DRIVE_FOLDER_ID_HERE",
-  //   title:      "Summer 2024 — Beach Trip",
-  //   date:       "July 2024",
+  //   id:         "1ZEDqTUU5kbgJ0yNFcIzXsWYvBB8JgSMq",
+  //   title:      "Colorado",
+  //   date:       "Oct 2022",
   //   coverPhoto: "",   // optional: paste a direct image URL to use as the card cover
   //                     // leave blank to auto-use the first photo in the folder
   //   emoji:      "🏖️"  // shown if no cover photo loads
