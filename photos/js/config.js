@@ -40,7 +40,8 @@ const ALBUMS = [
    photosUrl: "https://photos.app.goo.gl/x7vQV1Lw227KKMXR9",
    title:     "Colorado",
    date:      "July 2025",
-   emoji:     "☀️"
+   emoji:     "☀️",
+  coverPhoto:  "https://lh3.googleusercontent.com/d/1a6jvFQIiRE9cvsnmrA-FAdxAI14_2Sr-"
  },
 ];
 
