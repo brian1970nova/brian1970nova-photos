@@ -43,6 +43,15 @@ const ALBUMS = [
    emoji:     "☀️",
   coverPhoto:  "https://lh3.googleusercontent.com/d/1a6jvFQIiRE9cvsnmrA-FAdxAI14_2Sr-"
  },
+
+  {
+    type:       "photos",
+    photosUrl:  "https://www.icloud.com/sharedalbum/#B21JtdOXm02INQs",
+    title:      "Colorado 2024",
+    date:       "Oct 2024",
+    emoji:      "🌅",
+    coverPhoto: "https://lh3.googleusercontent.com/d/1RBsWBV3_MjGauXaOvELLdOx0Jeq7p_ag"
+  },
 ];
 
 // ── Gallery header text ───────────────────────────────────────────────────
