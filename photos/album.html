@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Album — Brian's Photos</title>
+  <link rel="stylesheet" href="css/gallery.css">
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="/photos/" class="back-link">← All Albums</a>
+      <h1 id="album-title">Loading…</h1>
+      <p class="tagline" id="album-subtitle"></p>
+    </div>
+  </header>
+
+  <main>
+    <section id="photos-grid" class="photos-grid">
+      <div class="loading">Loading photos…</div>
+    </section>
+  </main>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox hidden">
+    <button class="lb-close" id="lb-close" aria-label="Close">✕</button>
+    <button class="lb-prev" id="lb-prev" aria-label="Previous">&#8249;</button>
+    <button class="lb-next" id="lb-next" aria-label="Next">&#8250;</button>
+    <div class="lb-content">
+      <img id="lb-img" src="" alt="">
+      <p id="lb-caption"></p>
+    </div>
+  </div>
+
+  <footer>
+    <p>brian1970nova.com/photos &nbsp;·&nbsp; Shared with ♥</p>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/album.js"></script>
+</body>
+</html>
