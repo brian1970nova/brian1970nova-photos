@@ -50,7 +50,7 @@ const ALBUMS = [
     title:      "Colorado 2024",
     date:       "Oct 2024",
     emoji:      "🌅",
-    coverPhoto: "https://lh3.googleusercontent.com/d/11-P6su-MVN73eHfv0tl2VmmtDCE9dHbr"
+    coverPhoto: "https://lh3.googleusercontent.com/d/1DqZliQ3Ul9u7sq-j-ZHGNjWd_aM4dOco"
   },
 ];
 
