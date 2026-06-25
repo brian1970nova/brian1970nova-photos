@@ -33,6 +33,7 @@ const ALBUMS = [
     title: "Colorado",
     date:  "Nov 2023",
     emoji: "🏔️"
+    coverPhoto: "https://lh3.googleusercontent.com/d/1RBsWBV3_MjGauXaOvELLdOx0Jeq7p_ag"
   },
 
     {
