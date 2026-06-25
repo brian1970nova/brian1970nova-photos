@@ -32,7 +32,7 @@ const ALBUMS = [
     id:    "1hvnYoXVLPOH83T_MU7O_CYwbQoLvhiAK",
     title: "Colorado",
     date:  "Nov 2023",
-    emoji: "🏔️"
+    emoji: "🏔️",
     coverPhoto: "https://lh3.googleusercontent.com/d/1RBsWBV3_MjGauXaOvELLdOx0Jeq7p_ag"
   },
 
